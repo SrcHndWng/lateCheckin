@@ -29,8 +29,8 @@ public class GameScreen implements Screen{
     private long lastDropTime;
     private int dropsGathered;
 
-    public GameScreen(final LateCheckin gam) {
-        this.game = gam;
+    public GameScreen(final LateCheckin game) {
+        this.game = game;
 
         // load the images for the droplet and the bucket, 64x64 pixels each
         dropImage = new Texture(Gdx.files.internal("droplet.png"));
@@ -88,7 +88,7 @@ public class GameScreen implements Screen{
         // begin a new batch and draw the bucket and
         // all drops
         game.batch.begin();
-        game.font.draw(game.batch, "Drops Collected: " + dropsGathered, Const.DispStrings.DropCount.x, Const.DispStrings.DropCount.y);
+        game.font.draw(game.batch, Const.DispStrings.DropCount.title + dropsGathered, Const.DispStrings.DropCount.x, Const.DispStrings.DropCount.y);
         game.batch.draw(bucketImage, bucket.x, bucket.y);
         for (Rectangle raindrop : raindrops) {
             game.batch.draw(dropImage, raindrop.x, raindrop.y);

@@ -9,12 +9,11 @@ public class MainMenuScreen implements Screen {
     private final LateCheckin game;
     private OrthographicCamera camera;
 
-    public MainMenuScreen(final LateCheckin gam) {
-        game = gam;
+    public MainMenuScreen(final LateCheckin game) {
+        this.game = game;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Const.Viewport.width, Const.Viewport.height);
-
     }
 
     @Override
@@ -26,8 +25,8 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.font.draw(game.batch, "Welcome to LateCheckin!!! ", Const.DispStrings.Welcome.x, Const.DispStrings.Welcome.y);
-        game.font.draw(game.batch, "Tap anywhere to begin!", Const.DispStrings.Tap.x, Const.DispStrings.Tap.y);
+        game.font.draw(game.batch, Const.DispStrings.Welcome.message, Const.DispStrings.Welcome.getX(), Const.DispStrings.Welcome.getY());
+        game.font.draw(game.batch, Const.DispStrings.Tap.message, Const.DispStrings.Tap.getX(), Const.DispStrings.Tap.getY());
         game.batch.end();
 
         if (Gdx.input.isTouched()) {
