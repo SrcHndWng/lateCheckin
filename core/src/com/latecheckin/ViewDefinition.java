@@ -10,7 +10,7 @@ public class ViewDefinition {
             return Const.Viewport.width / 2 - 100;
         }
         public static float getY(){
-            return Const.Viewport.height / 2 - 50;
+            return Const.Viewport.height / 2;
         }
     }
 
@@ -20,7 +20,7 @@ public class ViewDefinition {
             return Const.Viewport.width / 2 - 100;
         }
         public  static float getY(){
-            return Const.Viewport.height / 2;
+            return Const.Viewport.height / 2 - 50;
         }
     }
 }
