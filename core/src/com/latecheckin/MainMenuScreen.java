@@ -25,8 +25,8 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.font.draw(game.batch, Const.DispStrings.Welcome.message, Const.DispStrings.Welcome.getX(), Const.DispStrings.Welcome.getY());
-        game.font.draw(game.batch, Const.DispStrings.Tap.message, Const.DispStrings.Tap.getX(), Const.DispStrings.Tap.getY());
+        game.font.draw(game.batch, ViewDefinition.Welcome.message, ViewDefinition.Welcome.getX(), ViewDefinition.Welcome.getY());
+        game.font.draw(game.batch, ViewDefinition.Tap.message, ViewDefinition.Tap.getX(), ViewDefinition.Tap.getY());
         game.batch.end();
 
         if (Gdx.input.isTouched()) {

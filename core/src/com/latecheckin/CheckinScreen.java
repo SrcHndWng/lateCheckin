@@ -26,9 +26,9 @@ public class CheckinScreen implements Screen{
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.font.draw(game.batch, "Checkin Place 1.", Const.DispStrings.Welcome.getX(), Const.Viewport.height - 500);
-        game.font.draw(game.batch, "Checkin Place 2.", Const.DispStrings.Welcome.getX(), Const.Viewport.height - 450);
-        game.font.draw(game.batch, "Checkin Place 3.", Const.DispStrings.Welcome.getX(), Const.Viewport.height - 400);
+        game.font.draw(game.batch, "Checkin Place 1.", ViewDefinition.Welcome.getX(), Const.Viewport.height - 500);
+        game.font.draw(game.batch, "Checkin Place 2.", ViewDefinition.Welcome.getX(), Const.Viewport.height - 450);
+        game.font.draw(game.batch, "Checkin Place 3.", ViewDefinition.Welcome.getX(), Const.Viewport.height - 400);
         game.batch.end();
     }
 
