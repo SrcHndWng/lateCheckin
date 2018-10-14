@@ -1,14 +1,17 @@
 package com.latecheckin;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector3;
 
 public class CheckinScreen implements Screen{
     private final LateCheckin game;
-
     private OrthographicCamera camera;
+
 
     public CheckinScreen(final LateCheckin game) {
         this.game = game;
@@ -30,6 +33,13 @@ public class CheckinScreen implements Screen{
         game.font.draw(game.batch, "Checkin Place 2.", ViewDefinition.Welcome.getX(), Const.Viewport.height - 450);
         game.font.draw(game.batch, "Checkin Place 3.", ViewDefinition.Welcome.getX(), Const.Viewport.height - 400);
         game.batch.end();
+
+        if(Gdx.input.isTouched()) {
+            Vector3 touchPos = new Vector3();
+            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(touchPos);
+            System.out.println("Checkin Touched! x = " + Gdx.input.getX() + ", y = " + Gdx.input.getY());
+        }
     }
 
     @Override
