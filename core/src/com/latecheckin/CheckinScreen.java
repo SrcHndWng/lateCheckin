@@ -2,14 +2,15 @@ package com.latecheckin;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.GL20;
 
-public class MainMenuScreen implements Screen {
+public class CheckinScreen implements Screen{
     private final LateCheckin game;
+
     private OrthographicCamera camera;
 
-    public MainMenuScreen(final LateCheckin game) {
+    public CheckinScreen(final LateCheckin game) {
         this.game = game;
 
         camera = new OrthographicCamera();
@@ -25,14 +26,10 @@ public class MainMenuScreen implements Screen {
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.font.draw(game.batch, Const.DispStrings.Welcome.message, Const.DispStrings.Welcome.getX(), Const.DispStrings.Welcome.getY());
-        game.font.draw(game.batch, Const.DispStrings.Tap.message, Const.DispStrings.Tap.getX(), Const.DispStrings.Tap.getY());
+        game.font.draw(game.batch, "Checkin Place 1.", Const.DispStrings.Welcome.getX(), Const.Viewport.height - 500);
+        game.font.draw(game.batch, "Checkin Place 2.", Const.DispStrings.Welcome.getX(), Const.Viewport.height - 450);
+        game.font.draw(game.batch, "Checkin Place 3.", Const.DispStrings.Welcome.getX(), Const.Viewport.height - 400);
         game.batch.end();
-
-        if (Gdx.input.isTouched()) {
-            game.setScreen(new CheckinScreen(game));
-            dispose();
-        }
     }
 
     @Override

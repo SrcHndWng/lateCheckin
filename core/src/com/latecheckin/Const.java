@@ -33,7 +33,7 @@ public class Const {
             }
         }
         public static class Tap{
-            public static String message = "Tap anywhere to begin!";
+            public static String message = "Tap anywhere to checkin!";
             public static float getX(){
                 return Const.Viewport.width / 2 - 100;
             }
