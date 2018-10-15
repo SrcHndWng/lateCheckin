@@ -29,10 +29,10 @@ public class LateCheckin extends ApplicationAdapter {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        int row_height = Gdx.graphics.getWidth() / 12;
-        int col_width = Gdx.graphics.getWidth() / 12;
+        final int row_height = Gdx.graphics.getWidth() / 12;
+        final int col_width = Gdx.graphics.getWidth() / 12;
 
-        Skin mySkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
+        final Skin mySkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 
         Label title = new Label("Late Checkin",mySkin,"big-black");
         title.setSize(Gdx.graphics.getWidth(),row_height*2);
@@ -41,29 +41,47 @@ public class LateCheckin extends ApplicationAdapter {
         stage.addActor(title);
 
         // Text Button
-        final Button button2 = new TextButton("Checkin!",mySkin,"small");
-        button2.setSize(col_width*4,row_height);
-        button2.setPosition(col_width*7,Gdx.graphics.getHeight()-row_height*3);
-        button2.addListener(new InputListener(){
-            @Override
-            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                outputLabel.setText("Press a Button");
-            }
+        createCheckinButton(row_height, col_width, mySkin);
+
+        // Text Button
+        final Button button3 = new TextButton("Button3!",mySkin,"small");
+        button3.setSize(col_width*4,row_height);
+        button3.setPosition(col_width*7,Gdx.graphics.getHeight()-row_height*6);
+        button3.addListener(new InputListener(){
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Pressed Text Button!!");
-                outputLabel.setText("Pressed Text Button");
-                // button2.remove(); // delete this button!!
+                System.out.println("Pressed Text Button3!!");
+                createCheckinButton(row_height, col_width, mySkin);
                 return true;
             }
         });
-        stage.addActor(button2);
+        stage.addActor(button3);
 
         outputLabel = new Label("Press a Button",mySkin,"black");
         outputLabel.setSize(Gdx.graphics.getWidth(),row_height);
         outputLabel.setPosition(0,row_height);
         outputLabel.setAlignment(Align.center);
         stage.addActor(outputLabel);
+    }
+
+    private void createCheckinButton(int row_height, int col_width, Skin mySkin){
+        final Button checkinBtn = new TextButton("Checkin!",mySkin,"small");
+        checkinBtn.setSize(col_width*4,row_height);
+        checkinBtn.setPosition(col_width*7,Gdx.graphics.getHeight()-row_height*3);
+        checkinBtn.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                outputLabel.setText("Press to Checkin");
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("Pressed Checkin Button!!");
+                outputLabel.setText("Pressed Checkin Button");
+                checkinBtn.remove(); // delete this button!!
+                return true;
+            }
+        });
+        stage.addActor(checkinBtn);
     }
 
     @Override
