@@ -60,7 +60,7 @@ public class LateCheckin extends ApplicationAdapter {
         checkinBtn.addListener(new InputListener(){
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Pressed Checkin Button!!");
+                new Checkin().getLocations();
                 outputLabel.setText("Pressed Checkin Button");
                 checkinBtn.remove(); // delete this button!!
                 return true;
