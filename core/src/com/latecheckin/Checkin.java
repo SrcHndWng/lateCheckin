@@ -1,6 +1,10 @@
 package com.latecheckin;
 
+import twitter4j.GeoLocation;
+import twitter4j.GeoQuery;
+import twitter4j.Place;
 import twitter4j.QueryResult;
+import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -28,22 +32,9 @@ public class Checkin {
                         .build()).getInstance();
     }
 
-    public void getLocations(){
-        System.out.println("----- getLocations start. -----");
-
-        String queryStr = "car";
-        Query query = new Query();
-        query.setQuery(queryStr);
-        try {
-            QueryResult result = twitter.search(query);
-            for (Status s : result.getTweets()) {
-                System.out.println(s.getText());
-            }
-        } catch (TwitterException e) {
-            System.out.println("error raise.");
-            System.out.println(e);
-        }
-
-        System.out.println("----- getLocations end. -----");
+    public ResponseList<Place> getPlaces(CurrentLocation current) throws TwitterException{
+        GeoLocation location = new GeoLocation(current.getLatitude(), current.getLongtitude());
+        GeoQuery query = new GeoQuery(location);
+        return twitter.searchPlaces(query);
     }
 }

@@ -17,6 +17,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import twitter4j.TwitterException;
+
 public class LateCheckin extends ApplicationAdapter {
     private SpriteBatch batch;
     private BitmapFont font;
@@ -60,7 +62,13 @@ public class LateCheckin extends ApplicationAdapter {
         checkinBtn.addListener(new InputListener(){
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                new Checkin().getLocations();
+                try {
+                    CurrentLocation current = new CurrentLocation(35.690921,139.700258);
+                    new Checkin().getPlaces(current);
+                } catch (TwitterException e) {
+                    // TODO: error handling
+                    e.printStackTrace();
+                }
                 outputLabel.setText("Pressed Checkin Button");
                 checkinBtn.remove(); // delete this button!!
                 return true;
