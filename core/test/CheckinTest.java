@@ -4,20 +4,20 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import twitter4j.Place;
-import twitter4j.ResponseList;
+import java.util.List;
+
 import twitter4j.TwitterException;
 
 public class CheckinTest {
     @Test
     public void getLocations() {
         try {
-            Location current = Location.createLocate(35.690921,139.700258);
-            ResponseList<Place> places = new Checkin().getPlaces(current);
-            for(Place place : places){
-                System.out.println(place);
+            Coordinate current = Coordinate.create(35.690921,139.700258);
+            List<Location> locations = new Checkin().getPlaces(current);
+            for(Location location : locations){
+                System.out.printf("country = %s, fullName = %s%n", location.getCountry(), location.getFullName());
             }
-            assertNotNull(places);
+            assertNotNull(locations);
         } catch (TwitterException e) {
             e.printStackTrace();
         }

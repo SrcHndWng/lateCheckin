@@ -1,22 +1,29 @@
 package com.latecheckin;
 
 public class Location {
-    private double latitude;
-    private double longitude;
+    private String streetAddress;
+    private String country;
+    private String fullName;
 
-    private Location(double latitude, double longitude){
-        this.latitude = latitude;
-        this.longitude = longitude;
+    private Location(String streetAddress, String country, String fullName){
+        this.streetAddress = streetAddress;
+        this.country = country;
+        this.fullName = fullName;
     }
 
-    public static Location createLocate(double latitude, double longitude){
-        return new Location(latitude, longitude);
+    public static Location create(twitter4j.Place place){
+        return new Location(place.getStreetAddress(), place.getCountry(), place.getFullName());
     }
 
-    public double getLatitude(){
-        return latitude;
+    public String getStreetAddress(){
+        return streetAddress;
     }
-    public double getLongitude(){
-        return longitude;
+
+    public String getCountry(){
+        return country;
+    }
+
+    public String getFullName(){
+        return fullName;
     }
 }

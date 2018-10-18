@@ -1,5 +1,8 @@
 package com.latecheckin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import twitter4j.GeoLocation;
 import twitter4j.GeoQuery;
 import twitter4j.Place;
@@ -29,9 +32,14 @@ public class Checkin {
                         .build()).getInstance();
     }
 
-    public ResponseList<Place> getPlaces(Location current) throws TwitterException{
-        GeoLocation location = new GeoLocation(current.getLatitude(), current.getLongitude());
-        GeoQuery query = new GeoQuery(location);
-        return twitter.searchPlaces(query);
+    public List<Location> getPlaces(Coordinate current) throws TwitterException{
+        GeoLocation geoLocation = new GeoLocation(current.getLatitude(), current.getLongitude());
+        GeoQuery query = new GeoQuery(geoLocation);
+        ResponseList<Place> places = twitter.searchPlaces(query);
+        List<Location> locations = new ArrayList<Location>();
+        for(Place place : places){
+            locations.add(Location.create(place));
+        }
+        return locations;
     }
 }

@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import java.util.List;
 import twitter4j.TwitterException;
 
 public class LateCheckin extends ApplicationAdapter {
@@ -62,9 +63,13 @@ public class LateCheckin extends ApplicationAdapter {
         checkinBtn.addListener(new InputListener(){
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("Pressed Checkin Button");
                 try {
-                    Location current = Location.createLocate(35.690921,139.700258);
-                    new Checkin().getPlaces(current);
+                    Coordinate current = Coordinate.create(35.690921,139.700258);
+                    List<Location> locations = new Checkin().getPlaces(current);
+                    for(Location location : locations){
+                        System.out.printf("country = %s, fullName = %s%n", location.getCountry(), location.getFullName());
+                    }
                 } catch (TwitterException e) {
                     // TODO: error handling
                     e.printStackTrace();
