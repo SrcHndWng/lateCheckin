@@ -1,17 +1,22 @@
 package com.latecheckin;
 
-public class CurrentLocation {
+public class Location {
     private double latitude;
     private double longitude;
 
-    public CurrentLocation(double latitude, double longitude){
+    private Location(double latitude, double longitude){
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    public static Location createLocate(double latitude, double longitude){
+        return new Location(latitude, longitude);
+    }
+
     public double getLatitude(){
         return latitude;
     }
-    public double getLongtitude(){
+    public double getLongitude(){
         return longitude;
     }
 }

@@ -12,7 +12,7 @@ public class CheckinTest {
     @Test
     public void getLocations() {
         try {
-            CurrentLocation current = new CurrentLocation(35.690921,139.700258);
+            Location current = Location.createLocate(35.690921,139.700258);
             ResponseList<Place> places = new Checkin().getPlaces(current);
             for(Place place : places){
                 System.out.println(place);

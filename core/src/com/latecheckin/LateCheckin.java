@@ -63,7 +63,7 @@ public class LateCheckin extends ApplicationAdapter {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 try {
-                    CurrentLocation current = new CurrentLocation(35.690921,139.700258);
+                    Location current = Location.createLocate(35.690921,139.700258);
                     new Checkin().getPlaces(current);
                 } catch (TwitterException e) {
                     // TODO: error handling

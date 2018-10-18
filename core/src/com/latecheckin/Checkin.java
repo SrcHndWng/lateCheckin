@@ -3,14 +3,11 @@ package com.latecheckin;
 import twitter4j.GeoLocation;
 import twitter4j.GeoQuery;
 import twitter4j.Place;
-import twitter4j.QueryResult;
 import twitter4j.ResponseList;
-import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
-import twitter4j.Query;
 
 public class Checkin {
     final String TWITTER_ACCOUNT = System.getenv("TWITTER_ACCOUNT");
@@ -32,8 +29,8 @@ public class Checkin {
                         .build()).getInstance();
     }
 
-    public ResponseList<Place> getPlaces(CurrentLocation current) throws TwitterException{
-        GeoLocation location = new GeoLocation(current.getLatitude(), current.getLongtitude());
+    public ResponseList<Place> getPlaces(Location current) throws TwitterException{
+        GeoLocation location = new GeoLocation(current.getLatitude(), current.getLongitude());
         GeoQuery query = new GeoQuery(location);
         return twitter.searchPlaces(query);
     }
