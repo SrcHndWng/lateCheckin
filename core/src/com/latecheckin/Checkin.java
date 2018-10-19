@@ -38,6 +38,7 @@ public class Checkin {
         ResponseList<Place> places = twitter.searchPlaces(query);
         List<Location> locations = new ArrayList<Location>();
         for(Place place : places){
+            System.out.println(place);
             locations.add(Location.create(place));
         }
         return locations;

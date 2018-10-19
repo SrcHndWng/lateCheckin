@@ -89,6 +89,8 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "org.twitter4j:twitter4j-core:4.0.6"
+        compile "com.atilika.kuromoji:kuromoji-ipadic:0.9.0"
+        compile 'com.ibm.icu:icu4j:55.1'
         testCompile 'junit:junit:4.12'
     }
 }
