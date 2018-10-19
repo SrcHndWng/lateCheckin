@@ -12,7 +12,7 @@ public class Location {
     }
 
     public static Location create(twitter4j.Place place){
-        return new Location(place.getStreetAddress(), place.getCountry(), place.getFullName());
+        return new Location(place.getStreetAddress(), place.getCountryCode(), place.getFullName());
     }
 
     public String getStreetAddress(){

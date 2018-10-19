@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import java.util.Collections;
 import java.util.List;
 import twitter4j.TwitterException;
 
@@ -43,8 +44,9 @@ public class LateCheckin extends ApplicationAdapter {
         // Text Button
         createCheckinButton(skin);
 
+        // TODO: remove
         // Text Button
-        createButton3(skin);
+//        createButton3(skin);
 
         outputLabel = new Label("Press a Button",skin,"black");
         outputLabel.setSize(Gdx.graphics.getWidth(),ViewDefine.rowHeight);
@@ -64,7 +66,7 @@ public class LateCheckin extends ApplicationAdapter {
                 try {
                     Coordinate current = Coordinate.create(35.690921,139.700258);
                     List<Location> locations = new Checkin().getPlaces(current);
-                    createLocationButtons(locations);
+                    createLocationButtons(locations, skin);
                 } catch (TwitterException e) {
                     // TODO: error handling
                     e.printStackTrace();
@@ -77,9 +79,28 @@ public class LateCheckin extends ApplicationAdapter {
         stage.addActor(checkinBtn);
     }
 
-    private void createLocationButtons( List<Location> locations ){
+    private void createLocationButtons(List<Location> locations, final Skin skin){
+        int i = 1;
         for(Location location : locations){
-            System.out.printf("country = %s, fullName = %s%n", location.getCountry(), location.getFullName());
+            if(i > Const.MAX_LOCATIONS){
+                break;
+            }
+            System.out.printf("i = %d, country = %s, fullName = %s%n", i, location.getCountry(), location.getFullName());
+            final String title = String.format("%s, %s", location.getCountry(), i);
+            final Button button = new TextButton(title,skin,"small");
+            button.setSize(ViewDefine.LocationButton.getWidth(),ViewDefine.LocationButton.getHeight());
+            button.setPosition(ViewDefine.LocationButton.getX(), ViewDefine.LocationButton.getY(i));
+            button.addListener(new InputListener(){
+                @Override
+                public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                    System.out.println(title + " Clicked!");
+                    createCheckinButton(skin);
+                    return true;
+                }
+            });
+            stage.addActor(button);
+
+            i++;
         }
     }
 

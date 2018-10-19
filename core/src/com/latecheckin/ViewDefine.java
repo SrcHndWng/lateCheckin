@@ -40,4 +40,19 @@ public class ViewDefine {
             return rowHeight*8;
         }
     }
+
+    public static class LocationButton{
+        public static float getWidth(){
+            return colWidth*4;
+        }
+        public static float getHeight(){
+            return rowHeight;
+        }
+        public static float getX(){
+            return colWidth*4;
+        }
+        public static float getY(int i){
+            return (rowHeight * 3) + rowHeight*(10-i);
+        }
+    }
 }
