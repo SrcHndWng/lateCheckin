@@ -56,13 +56,13 @@ public class LateCheckin extends ApplicationAdapter {
                     Coordinate current = Coordinate.create(35.690921,139.700258);
                     List<Location> locations = new Checkin().getPlaces(current);
                     createLocationButtons(locations, skin);
+                    outputLabel.setText(Definition.CheckinButton.message);
+                    checkinBtn.remove();
+                    return true;
                 } catch (TwitterException e) {
-                    // TODO: error handling
                     e.printStackTrace();
+                    return false;
                 }
-                outputLabel.setText(Definition.CheckinButton.message);
-                checkinBtn.remove();
-                return true;
             }
         });
         stage.addActor(checkinBtn);
