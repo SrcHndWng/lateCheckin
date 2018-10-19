@@ -32,9 +32,6 @@ public class LateCheckin extends ApplicationAdapter {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
-        final int row_height = Gdx.graphics.getWidth() / 12;
-        final int col_width = Gdx.graphics.getWidth() / 12;
-
         final Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 
         Label title = new Label(ViewDefine.Title.message,skin,"big-black");
@@ -50,8 +47,8 @@ public class LateCheckin extends ApplicationAdapter {
         createButton3(skin);
 
         outputLabel = new Label("Press a Button",skin,"black");
-        outputLabel.setSize(Gdx.graphics.getWidth(),row_height);
-        outputLabel.setPosition(0,row_height);
+        outputLabel.setSize(Gdx.graphics.getWidth(),ViewDefine.rowHeight);
+        outputLabel.setPosition(0, ViewDefine.rowHeight);
         outputLabel.setAlignment(Align.center);
         stage.addActor(outputLabel);
     }
@@ -67,9 +64,7 @@ public class LateCheckin extends ApplicationAdapter {
                 try {
                     Coordinate current = Coordinate.create(35.690921,139.700258);
                     List<Location> locations = new Checkin().getPlaces(current);
-                    for(Location location : locations){
-                        System.out.printf("country = %s, fullName = %s%n", location.getCountry(), location.getFullName());
-                    }
+                    createLocationButtons(locations);
                 } catch (TwitterException e) {
                     // TODO: error handling
                     e.printStackTrace();
@@ -80,6 +75,12 @@ public class LateCheckin extends ApplicationAdapter {
             }
         });
         stage.addActor(checkinBtn);
+    }
+
+    private void createLocationButtons( List<Location> locations ){
+        for(Location location : locations){
+            System.out.printf("country = %s, fullName = %s%n", location.getCountry(), location.getFullName());
+        }
     }
 
     private void createButton3(final Skin skin){
