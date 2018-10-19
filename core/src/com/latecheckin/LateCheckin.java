@@ -28,7 +28,7 @@ public class LateCheckin extends ApplicationAdapter {
 
         final Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 
-        Label title = new Label(ViewDefine.Title.message,skin,"big-black");
+        Label title = new Label(ViewDefine.Title.text,skin,"big-black");
         title.setSize(ViewDefine.Title.getWidth(),ViewDefine.Title.getHeight());
         title.setPosition(ViewDefine.Title.getX(),ViewDefine.Title.getY());
         title.setAlignment(Align.center);
@@ -37,7 +37,7 @@ public class LateCheckin extends ApplicationAdapter {
         // Text Button
         createCheckinButton(skin);
 
-        outputLabel = new Label("Press a Button",skin,"black");
+        outputLabel = new Label("",skin,"black");
         outputLabel.setSize(Gdx.graphics.getWidth(),ViewDefine.rowHeight);
         outputLabel.setPosition(0, ViewDefine.rowHeight);
         outputLabel.setAlignment(Align.center);
@@ -45,13 +45,13 @@ public class LateCheckin extends ApplicationAdapter {
     }
 
     private void createCheckinButton(final Skin skin){
-        final Button checkinBtn = new TextButton(ViewDefine.CheckinButton.message,skin,"small");
+        final Button checkinBtn = new TextButton(ViewDefine.CheckinButton.text,skin,"small");
         checkinBtn.setSize(ViewDefine.CheckinButton.getWidth(),ViewDefine.CheckinButton.getHeight());
         checkinBtn.setPosition(ViewDefine.CheckinButton.getX(),ViewDefine.CheckinButton.getY());
         checkinBtn.addListener(new InputListener(){
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Pressed Checkin Button");
+                System.out.println(ViewDefine.CheckinButton.message);
                 try {
                     Coordinate current = Coordinate.create(35.690921,139.700258);
                     List<Location> locations = new Checkin().getPlaces(current);
@@ -60,8 +60,8 @@ public class LateCheckin extends ApplicationAdapter {
                     // TODO: error handling
                     e.printStackTrace();
                 }
-                outputLabel.setText("Pressed Checkin Button");
-                checkinBtn.remove(); // delete this button!!
+                outputLabel.setText(ViewDefine.CheckinButton.message);
+                checkinBtn.remove();
                 return true;
             }
         });
@@ -70,19 +70,21 @@ public class LateCheckin extends ApplicationAdapter {
 
     private void createLocationButtons(List<Location> locations, final Skin skin){
         int i = 0;
-        for(Location location : locations){
+        for(final Location location : locations){
             if(i > Const.MAX_LOCATIONS - 1){
                 break;
             }
             System.out.printf("i = %d, country = %s, fullName = %s%n", i+1, location.getCountry(), location.getFullName());
-            final String title = String.format("%s, %s", location.getCountry(), i+1);
+            final String title = ViewDefine.LocationButton.getText(location.getCountry(), i);
             final Button locationButton = new TextButton(title,skin,"small");
             locationButton.setSize(ViewDefine.LocationButton.getWidth(),ViewDefine.LocationButton.getHeight());
             locationButton.setPosition(ViewDefine.LocationButton.getX(), ViewDefine.LocationButton.getY(i));
             locationButton.addListener(new InputListener(){
                 @Override
                 public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                    System.out.println(title + " Clicked!");
+                    final String message = ViewDefine.LocationButton.getMessage(title);
+                    System.out.println(message);
+                    outputLabel.setText(message);
                     createCheckinButton(skin);
                     for(int j = 0; j < locationButtons.length; j++){
                         locationButtons[j].remove();

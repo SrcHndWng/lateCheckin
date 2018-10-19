@@ -10,7 +10,7 @@ public class ViewDefine {
     }
 
     public static class Title {
-        public static String message = "Late Checkin";
+        public static String text = "Late Checkin";
         public static float getWidth(){
             return Gdx.graphics.getWidth();
         }
@@ -26,7 +26,8 @@ public class ViewDefine {
     }
 
     public static class CheckinButton{
-        public static String message = "Checkin!";
+        public static String text = "Checkin!";
+        public static String message = "Pressed Checkin Button.";
         public static float getWidth(){
             return colWidth*4;
         }
@@ -42,6 +43,12 @@ public class ViewDefine {
     }
 
     public static class LocationButton{
+        public static String getText(String country, int i){
+            return String.format("%s, %s", country, i+1);
+        }
+        public static String getMessage(String text){
+            return text + " Clicked!";
+        }
         public static float getWidth(){
             return colWidth*4;
         }
