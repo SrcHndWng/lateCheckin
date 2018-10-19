@@ -49,20 +49,20 @@ public class Definition {
     }
 
     public static class LocationButton{
-        public static String getText(String country, int i){
-            return String.format("%s, %s", country, i+1);
+        public static String getText(String country, String fullName){
+            return String.format("%s, %s", country, fullName);
         }
         public static String getMessage(String text){
             return text + " Clicked!";
         }
         public static float getWidth(){
-            return colWidth*4;
+            return colWidth*8;
         }
         public static float getHeight(){
             return rowHeight;
         }
         public static float getX(){
-            return colWidth*4;
+            return colWidth*2;
         }
         public static float getY(int i){
             return (rowHeight * 3) + rowHeight*(10-i);

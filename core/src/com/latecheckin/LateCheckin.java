@@ -74,8 +74,10 @@ public class LateCheckin extends ApplicationAdapter {
             if(i > Definition.maxLocations - 1){
                 break;
             }
-            System.out.printf("i = %d, country = %s, fullName = %s%n", i+1, location.getCountry(), location.getFullName());
-            final String title = Definition.LocationButton.getText(location.getCountry(), i);
+            final String country = Utils.transferToRomaji(location.getCountry());
+            final String fullName = Utils.transferToRomaji(location.getFullName());
+            System.out.printf("i = %d, country = %s, fullName = %s%n", i+1, country, fullName);
+            final String title = Definition.LocationButton.getText(country, fullName);
             final Button locationButton = new TextButton(title,skin,"small");
             locationButton.setSize(Definition.LocationButton.getWidth(),Definition.LocationButton.getHeight());
             locationButton.setPosition(Definition.LocationButton.getX(), Definition.LocationButton.getY(i));
