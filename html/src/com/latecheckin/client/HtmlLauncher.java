@@ -3,15 +3,15 @@ package com.latecheckin.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.latecheckin.Const;
 import com.latecheckin.LateCheckin;
+import com.latecheckin.Definition;
 
 public class HtmlLauncher extends GwtApplication {
 
         // USE THIS CODE FOR A FIXED SIZE APPLICATION
         @Override
         public GwtApplicationConfiguration getConfig () {
-                return new GwtApplicationConfiguration((int)Const.Viewport.width, (int)Const.Viewport.height);
+                return new GwtApplicationConfiguration((int)Definition.Viewport.width, (int)Definition.Viewport.height);
         }
         // END CODE FOR FIXED SIZE APPLICATION
 

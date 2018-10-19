@@ -2,11 +2,17 @@ package com.latecheckin;
 
 import com.badlogic.gdx.Gdx;
 
-public class ViewDefine {
+public class Definition {
+    public final static int maxLocations = 10;
     public final static int rowHeight = Gdx.graphics.getWidth() / 12;
     public final static int colWidth = Gdx.graphics.getWidth() / 12;
 
-    private ViewDefine(){
+    private Definition(){
+    }
+
+    public static class Viewport{
+        public static final float width = 640.0f;
+        public static final float height = 1136.0f;
     }
 
     public static class Title {
