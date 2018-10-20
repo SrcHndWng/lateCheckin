@@ -13,6 +13,7 @@ public class AndroidLauncher extends AndroidApplication {
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useAccelerometer = false;
 		config.useCompass = false;
-		initialize(new LateCheckin(), config);
+		TwitterAccount twitterAccount = new TwitterAccount("","","","");
+		initialize(new LateCheckin(twitterAccount), config);
 	}
 }

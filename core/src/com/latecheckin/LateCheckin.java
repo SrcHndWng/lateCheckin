@@ -23,10 +23,12 @@ public class LateCheckin extends ApplicationAdapter {
     private Button locationButtons[] = new Button[Definition.maxLocations];
     private TwitterAccount twitterAccount;
     private Checkin checkin;
+    private GeoLocation geoLocation;
 
-    public LateCheckin(TwitterAccount twitterAccount){
+    public LateCheckin(TwitterAccount twitterAccount, GeoLocation geoLocation){
         this.twitterAccount = twitterAccount;
         this.checkin = Checkin.getInstance(twitterAccount);
+        this.geoLocation = geoLocation;
     }
 
     public void create() {
@@ -60,7 +62,7 @@ public class LateCheckin extends ApplicationAdapter {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println(Definition.CheckinButton.message);
                 try {
-                    Coordinate current = Coordinate.create(35.690921,139.700258);
+                    Coordinate current = geoLocation.getCurrentLocation();
                     List<Location> locations = checkin.getPlaces(current);
                     createLocationButtons(locations, skin);
                     outputLabel.setText(Definition.CheckinButton.message);
