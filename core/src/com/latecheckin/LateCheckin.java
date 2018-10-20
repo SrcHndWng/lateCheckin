@@ -22,9 +22,11 @@ public class LateCheckin extends ApplicationAdapter {
     private Label outputLabel;
     private Button locationButtons[] = new Button[Definition.maxLocations];
     private TwitterAccount twitterAccount;
+    private Checkin checkin;
 
     public LateCheckin(TwitterAccount twitterAccount){
         this.twitterAccount = twitterAccount;
+        this.checkin = Checkin.getInstance(twitterAccount);
     }
 
     public void create() {
@@ -59,7 +61,7 @@ public class LateCheckin extends ApplicationAdapter {
                 System.out.println(Definition.CheckinButton.message);
                 try {
                     Coordinate current = Coordinate.create(35.690921,139.700258);
-                    List<Location> locations = new Checkin(twitterAccount).getPlaces(current);
+                    List<Location> locations = checkin.getPlaces(current);
                     createLocationButtons(locations, skin);
                     outputLabel.setText(Definition.CheckinButton.message);
                     checkinBtn.remove();
@@ -93,7 +95,7 @@ public class LateCheckin extends ApplicationAdapter {
                         final String message = Definition.LocationButton.getMessage(title);
                         System.out.println(message);
                         outputLabel.setText(message);
-                        new Checkin(twitterAccount).tweet(country, fullName);
+                        checkin.tweet(country, fullName);
                         createCheckinButton(skin);
                         for(int j = 0; j < locationButtons.length; j++){
                             locationButtons[j].remove();

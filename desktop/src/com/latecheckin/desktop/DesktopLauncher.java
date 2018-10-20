@@ -12,7 +12,6 @@ public class DesktopLauncher {
 		config.title = "LateCheckin";
 		config.width = (int)Definition.Viewport.width;
 		config.height = (int)Definition.Viewport.height;
-
 		TwitterAccount twitterAccount = new TwitterAccount(
 				System.getenv("TWITTER_ACCESS_TOKEN"),
 				System.getenv("TWITTER_ACCESS_TOKEN_SECRET"),

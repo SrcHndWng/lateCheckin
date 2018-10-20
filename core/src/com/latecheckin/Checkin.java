@@ -13,9 +13,10 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class Checkin {
+    private static Checkin checkin = null;
     private Twitter twitter;
 
-    public Checkin(TwitterAccount twitterAccount){
+    private Checkin(TwitterAccount twitterAccount){
         twitter = new TwitterFactory(
                 new ConfigurationBuilder()
                         .setDebugEnabled(true)
@@ -24,6 +25,13 @@ public class Checkin {
                         .setOAuthAccessToken(twitterAccount.getAccessToken())
                         .setOAuthAccessTokenSecret(twitterAccount.getAccessTokenSecret())
                         .build()).getInstance();
+    }
+
+    public static Checkin getInstance(TwitterAccount twitterAccount){
+        if(checkin  == null){
+            checkin = new Checkin(twitterAccount);
+        }
+        return checkin;
     }
 
     public List<Location> getPlaces(Coordinate current) throws TwitterException{
