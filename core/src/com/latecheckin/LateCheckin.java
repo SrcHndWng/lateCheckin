@@ -21,6 +21,11 @@ public class LateCheckin extends ApplicationAdapter {
     private Stage stage;
     private Label outputLabel;
     private Button locationButtons[] = new Button[Definition.maxLocations];
+    private TwitterAccount twitterAccount;
+
+    public LateCheckin(TwitterAccount twitterAccount){
+        this.twitterAccount = twitterAccount;
+    }
 
     public void create() {
         stage = new Stage(new ScreenViewport());
@@ -54,7 +59,7 @@ public class LateCheckin extends ApplicationAdapter {
                 System.out.println(Definition.CheckinButton.message);
                 try {
                     Coordinate current = Coordinate.create(35.690921,139.700258);
-                    List<Location> locations = new Checkin().getPlaces(current);
+                    List<Location> locations = new Checkin(twitterAccount).getPlaces(current);
                     createLocationButtons(locations, skin);
                     outputLabel.setText(Definition.CheckinButton.message);
                     checkinBtn.remove();
@@ -84,15 +89,20 @@ public class LateCheckin extends ApplicationAdapter {
             locationButton.addListener(new InputListener(){
                 @Override
                 public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                    final String message = Definition.LocationButton.getMessage(title);
-                    System.out.println(message);
-                    outputLabel.setText(message);
-//                    new Checkin().tweet(country, fullName);
-                    createCheckinButton(skin);
-                    for(int j = 0; j < locationButtons.length; j++){
-                        locationButtons[j].remove();
+                    try {
+                        final String message = Definition.LocationButton.getMessage(title);
+                        System.out.println(message);
+                        outputLabel.setText(message);
+                        new Checkin(twitterAccount).tweet(country, fullName);
+                        createCheckinButton(skin);
+                        for(int j = 0; j < locationButtons.length; j++){
+                            locationButtons[j].remove();
+                        }
+                        return true;
+                    } catch (TwitterException e) {
+                        e.printStackTrace();
+                        return false;
                     }
-                    return true;
                 }
             });
             stage.addActor(locationButton);

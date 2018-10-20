@@ -12,8 +12,13 @@ public class CheckinTest {
     @Test
     public void getLocations() {
         try {
+            TwitterAccount twitterAccount = new TwitterAccount(
+                    System.getenv("TWITTER_ACCESS_TOKEN"),
+                    System.getenv("TWITTER_ACCESS_TOKEN_SECRET"),
+                    System.getenv("TWITTER_CONSUMER_KEY"),
+                    System.getenv("TWITTER_CONSUMER_SECRET"));
             Coordinate current = Coordinate.create(35.690921,139.700258);
-            List<Location> locations = new Checkin().getPlaces(current);
+            List<Location> locations = new Checkin(twitterAccount).getPlaces(current);
             for(Location location : locations){
                 System.out.printf("country = %s, fullName = %s%n", location.getCountry(), location.getFullName());
             }
@@ -25,10 +30,15 @@ public class CheckinTest {
 
     @Test
     public void tweet(){
+        TwitterAccount twitterAccount = new TwitterAccount(
+                System.getenv("TWITTER_ACCESS_TOKEN"),
+                System.getenv("TWITTER_ACCESS_TOKEN_SECRET"),
+                System.getenv("TWITTER_CONSUMER_KEY"),
+                System.getenv("TWITTER_CONSUMER_SECRET"));
         final String country = "Nippon";
-        final String fullName = "Toukyou*ShinagawaKu";
+        final String fullName = "Toukyou*ChiyodaKu";
         try {
-            new Checkin().tweet(country, fullName);
+            new Checkin(twitterAccount).tweet(country, fullName);
         } catch (TwitterException e) {
             e.printStackTrace();
         }
