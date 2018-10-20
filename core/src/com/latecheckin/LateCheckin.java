@@ -87,6 +87,7 @@ public class LateCheckin extends ApplicationAdapter {
                     final String message = Definition.LocationButton.getMessage(title);
                     System.out.println(message);
                     outputLabel.setText(message);
+//                    new Checkin().tweet(country, fullName);
                     createCheckinButton(skin);
                     for(int j = 0; j < locationButtons.length; j++){
                         locationButtons[j].remove();

@@ -22,4 +22,15 @@ public class CheckinTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void tweet(){
+        final String country = "Nippon";
+        final String fullName = "Toukyou*ShinagawaKu";
+        try {
+            new Checkin().tweet(country, fullName);
+        } catch (TwitterException e) {
+            e.printStackTrace();
+        }
+    }
 }

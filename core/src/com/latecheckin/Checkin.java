@@ -7,6 +7,7 @@ import twitter4j.GeoLocation;
 import twitter4j.GeoQuery;
 import twitter4j.Place;
 import twitter4j.ResponseList;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -41,5 +42,10 @@ public class Checkin {
             locations.add(Location.create(place));
         }
         return locations;
+    }
+
+    public void tweet(String country, String fullName) throws TwitterException {
+        String message = String.format("I'm at, %s, %s.", fullName, country);
+        twitter.updateStatus(message);
     }
 }
