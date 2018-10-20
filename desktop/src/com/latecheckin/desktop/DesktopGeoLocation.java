@@ -1,15 +1,14 @@
 package com.latecheckin.desktop;
 
-import com.latecheckin.Coordinate;
-import com.latecheckin.GeoLocation;
+import com.latecheckin.DeviceLocation;
 
-public class DesktopGeoLocation implements GeoLocation {
+public class DesktopGeoLocation implements DeviceLocation {
     public DesktopGeoLocation(){
     }
 
     @Override
-    public Coordinate getCurrentLocation(){
+    public Coordinate getCurrentCoordinate(){
         // TODO: Get correct latitude, longitude.
-        return Coordinate.create(35.690921,139.700258);
+        return DeviceLocation.Coordinate.create(35.690921,139.700258);
     }
 }

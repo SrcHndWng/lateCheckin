@@ -2,7 +2,6 @@ package com.latecheckin.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.latecheckin.Coordinate;
 import com.latecheckin.LateCheckin;
 import com.latecheckin.Definition;
 import com.latecheckin.TwitterAccount;

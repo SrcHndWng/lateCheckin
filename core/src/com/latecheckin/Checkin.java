@@ -34,7 +34,7 @@ public class Checkin {
         return checkin;
     }
 
-    public List<Location> getPlaces(Coordinate current) throws TwitterException{
+    public List<Location> getPlaces(DeviceLocation.Coordinate current) throws TwitterException{
         GeoLocation geoLocation = new GeoLocation(current.getLatitude(), current.getLongitude());
         GeoQuery query = new GeoQuery(geoLocation);
         ResponseList<Place> places = twitter.searchPlaces(query);
