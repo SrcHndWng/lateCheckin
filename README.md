@@ -4,7 +4,9 @@
 
 作成中。
 
-[Extending the simple game](https://github.com/libgdx/libgdx/wiki/Extending-the-simple-game)を改修したもの。
+[Extending the simple game](https://github.com/libgdx/libgdx/wiki/Extending-the-simple-game)をベースに
+
+おおまかな位置情報をTwitterに投稿する。
 
 ## Skin
 
