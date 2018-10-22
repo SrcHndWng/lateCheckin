@@ -8,7 +8,7 @@ import com.latecheckin.TwitterAccount;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-		DesktopGeoLocation geo = new DesktopGeoLocation();
+		DesktopGeoLocation deviceLocation = new DesktopGeoLocation();
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "LateCheckin";
@@ -19,6 +19,6 @@ public class DesktopLauncher {
 				System.getenv("TWITTER_ACCESS_TOKEN_SECRET"),
 				System.getenv("TWITTER_CONSUMER_KEY"),
 				System.getenv("TWITTER_CONSUMER_SECRET"));
-		new LwjglApplication(new LateCheckin(twitterAccount, geo), config);
+		new LwjglApplication(new LateCheckin(twitterAccount, deviceLocation), config);
 	}
 }
